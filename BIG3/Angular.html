@@ -1,0 +1,341 @@
+<html>
+	<head>
+		<title>BIG3</title>
+		<link href="BIG3.css" type="text/css" rel="stylesheet">
+		<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+	</head>
+<body ng-app="myApp">	
+	<div ng-controller="buttons">
+		<table id="header">
+			<tr>
+				<td rowspan="3">
+					<img src="Drive.jpg" style="width: 150px; height: 150px">
+				</td>
+				<td >
+					<span id="bigboi">TH<span class="sick">3</span> BIG THR<span class="sick">33</span></span>
+				</td>
+				<td>
+					<p>Weight: <input id="weight" type="text" value="100" ng-model="weight"></p>
+					<p>Reps: <input id="reps" type="text" value="10" ng-model="reps"></p>
+					
+				</td>
+			</tr>
+			<tr >	
+				<td >
+					<span >
+					<input class ="butt" type="button" ng-class="{'btn-warning': benchButton}" ng-click="changeBench()" onclick="refreshBench()" value="Bench"> ---
+					<input class ="butt" type="button" ng-class="{'btn-warning': squatButton}" ng-click="changeSquat()" onclick="refreshSquat()" value="Squat"> ---
+					<input class ="butt" type="button" ng-class="{'btn-warning': deadButton}" ng-click="changeDead()" onclick="refreshDead()" value="Deadlift">
+					<span>
+				</td>
+				<td>
+					<input type="button" onclick="addSet();addRecord();addChallenges();addStats();" ng-click="refresh();changeTotals()" value="Add">
+					<span id="response">{{exercise}} {{weight}} x {{reps}}</span>
+				</td>
+			</tr>
+			<tr>
+				<td id="points">Level <span class="sick">{{xlevel}}</span>: <span class="sick">{{xcurrent}}</span> / <span class="sick">{{xtotal}}</span> Gains</td>
+				<td>
+					
+					<span id="response2"></span>
+					<span id="response3"></span>
+					<span id="response4"></span>
+				</td>
+			</tr>
+		</table>
+
+		<div id="myProgress">
+  			<div id="myBar" ng-style="{width : progress};"></div>
+		</div>
+		
+		<div class="tabs">
+
+			<div class="tab">
+			    <input class="tab-radio" type="radio" id="tab-1" name="tab-group-1" checked>
+			    <label class="tab-label" for="tab-1">History</label>
+
+			    <div class="tab-panel" >
+					<div class="tab-content" >
+					<span class="label">Ordered By: {{orderByField}}, Reverse Sort: {{reverseSort}}</span><br>
+						<div class="scrollingtable">
+							<div>
+								<div>
+									<table class="table">
+										<thead>
+											<tr class="odd">
+												<th>
+													<a href="#" ng-click="orderByField='set'; reverseSort = !reverseSort">
+				        							Set <span ng-show="orderByField == 'set'"><span ng-show="!reverseSort">^</span><span ng-show="reverseSort">v</span></span>
+				          							</a>
+												</th>
+												<th>
+													<a href="#" ng-click="orderByField='date'; reverseSort = !reverseSort">
+				        							Date <span ng-show="orderByField == 'date'"><span ng-show="!reverseSort">^</span><span ng-show="reverseSort">v</span></span>
+				          							</a>
+				          						</th>
+												<th>
+													<a href="#" ng-click="orderByField='weight'; reverseSort = !reverseSort">
+				        							Weight <span ng-show="orderByField == 'weight'"><span ng-show="!reverseSort">^</span><span ng-show="reverseSort">v</span></span>
+				          							</a>
+												</th>
+												<th>
+													<a href="#" ng-click="orderByField='reps'; reverseSort = !reverseSort">
+				        							Reps <span ng-show="orderByField == 'reps'"><span ng-show="!reverseSort">^</span><span ng-show="reverseSort">v</span></span>
+				          							</a>
+												</th>
+												<th>
+													<a href="#" ng-click="orderByField='oneRM'; reverseSort = !reverseSort">
+				        							1RM <span ng-show="orderByField == 'oneRM'"><span ng-show="!reverseSort">^</span><span ng-show="reverseSort">v</span></span>
+				          							</a>
+												</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr ng-repeat="x in hist|orderBy:orderByField:reverseSort track by $index">
+												<td ng-if="$odd" class="odd">{{x.set}}</td>
+												<td ng-if="$even" class="even">{{x.set}}</td>
+												<td ng-if="$odd" class="odd">{{x.date}}</td>
+												<td ng-if="$even" class="even">{{x.date}}</td>
+												<td ng-if="$odd" class="odd">{{x.weight}}</td>
+												<td ng-if="$even" class="even">{{x.weight}}</td>
+												<td ng-if="$odd" class="odd">{{x.reps}}</td>
+												<td ng-if="$even" class="even">{{x.reps}}</td>
+												<td ng-if="$odd" class="odd">{{x.oneRM}}</td>
+												<td ng-if="$even" class="even">{{x.oneRM}}</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+							<fusioncharts class="bro" type="column2d" datasource="{{myDataSource3}}">
+							</fusioncharts>						
+					</div>
+				</div>
+			</div>
+
+			<div class="tab">
+			    <input class="tab-radio" type="radio" id="tab-2" name="tab-group-1">
+			    <label class="tab-label" for="tab-2">Stacks</label>
+
+			    <div class="tab-panel" id="table-wrapper">
+					<div class="tab-content">
+						<span class="label">Ordered By: {{orderByField2}}, Reverse Sort: {{reverseSort2}}</span><br>						
+						<table class="table">
+							<tr class="odd">
+								<th>
+									<a href="#" ng-click="orderByField2='reps'; reverseSort2 = !reverseSort2">
+        							Reps <span ng-show="orderByField2 == 'reps'"><span ng-show="!reverseSort2">^</span><span ng-show="reverseSort2">v</span></span>
+          							</a>
+								</th>
+								<th>
+									<a href="#" ng-click="orderByField2='weight'; reverseSort2 = !reverseSort2">
+        							Weight <span ng-show="orderByField2 == 'weight'"><span ng-show="!reverseSort2">^</span><span ng-show="reverseSort2">v</span></span>
+          							</a>
+								</th>
+								<th>
+									<a href="#" ng-click="orderByField2='oneRM'; reverseSort2 = !reverseSort2">
+        							1RM <span ng-show="orderByField2 == 'oneRM'"><span ng-show="!reverseSort2">^</span><span ng-show="reverseSort2">v</span></span>
+          							</a>
+								</th>
+								<th>
+									<a href="#" ng-click="orderByField2='records'; reverseSort2 = !reverseSort2">
+        							Records <span ng-show="orderByField2 == 'records'"><span ng-show="!reverseSort2">^</span><span ng-show="reverseSort2">v</span></span>
+          							</a>
+								</th>
+							</tr>
+							<tr ng-repeat="x in stack|orderBy:orderByField2:reverseSort2" ng-class="{red: x.records == 0, green: x.records > 1, silver: x.records == 4, gold: x.records > 4}">
+								<td style="font-weight:bold">{{x.reps}}</td>
+								<td >{{x.weight}}</td>
+								<td >{{x.oneRM}}</td>
+								<td >{{x.records}}</td>
+							</tr>
+						</table>
+						<div class="stuff">
+							<fusioncharts type="column2d" datasource="{{myDataSource}}">
+							</fusioncharts>
+							<div>
+								<input type="button" ng-class="{'btn-warning': weightButton}" ng-click="weightStacks()" value="Weight">
+								<input type="button" ng-class="{'btn-warning': oneRMButton}" ng-click="oneRMStacks()" value="1RM">
+								<input type="button" ng-class="{'btn-warning': recordsButton}" ng-click="recordsStacks()" value="Records">
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="tab">
+			    <input class="tab-radio" type="radio" id="tab-3" name="tab-group-1">
+			    <label class="tab-label" for="tab-3">Pumps</label>
+
+			    <div class="tab-panel" id="table-wrapper">
+					<div class="tab-content">
+						<span class="label">Ordered By: {{orderByField3}}, Reverse Sort: {{reverseSort2}}</span><br>
+						<table class="table">
+							<tr class="odd">
+								<th>
+									<a href="#" ng-click="orderByField3='weight'; reverseSort2 = !reverseSort2">
+        							Weight <span ng-show="orderByField3 == 'weight'"><span ng-show="!reverseSort2">^</span><span ng-show="reverseSort2">v</span></span>
+          							</a>
+								</th>
+								<th>
+									<a href="#" ng-click="orderByField3='reps'; reverseSort2 = !reverseSort2">
+        							Reps <span ng-show="orderByField3 == 'reps'"><span ng-show="!reverseSort2">^</span><span ng-show="reverseSort2">v</span></span>
+          							</a>
+								</th>
+								<th>
+									<a href="#" ng-click="orderByField3='oneRM'; reverseSort2 = !reverseSort2">
+        							1RM <span ng-show="orderByField3 == 'oneRM'"><span ng-show="!reverseSort2">^</span><span ng-show="reverseSort2">v</span></span>
+          							</a>
+								</th>
+								<th>
+									<a href="#" ng-click="orderByField3='records'; reverseSort2 = !reverseSort2">
+        							Records <span ng-show="orderByField3 == 'records'"><span ng-show="!reverseSort2">^</span><span ng-show="reverseSort2">v</span></span>
+          							</a>
+								</th>
+							</tr>
+							<tr ng-repeat="x in pump|orderBy:orderByField3:reverseSort2" ng-class="{red: x.records == 0, green: x.records > 1, silver: x.records == 4, gold: x.records > 4}">
+								<td style="font-weight:bold">{{x.weight}}</td>
+								<td >{{x.reps}}</td>
+								<td >{{x.oneRM}}</td>
+								<td >{{x.records}}</td>
+							</tr>
+						</table>
+						<div class="stuff">
+							<fusioncharts class="graphs" type="column2d" datasource="{{myDataSource2}}">
+							</fusioncharts>
+							<div>
+								<input type="button" ng-class="{'btn-warning': weightButton}" ng-click="weightPumps()" value="Reps">
+								<input type="button" ng-class="{'btn-warning': oneRMButton}" ng-click="oneRMPumps()" value="1RM">
+								<input type="button" ng-class="{'btn-warning': recordsButton}" ng-click="recordsPumps()" value="Records">
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="tab">
+			    <input class="tab-radio" type="radio" id="tab-4" name="tab-group-1">
+			    <label class="tab-label" for="tab-4">Challenges</label>
+
+			    <div class="tab-panel" id="table-wrapper">
+					<div class="tab-content">
+						<span class="label">Ordered By: {{orderByField4}}, Reverse Sort: {{reverseSort2}}</span><br>
+						<table class="table">
+							<tr class="odd">
+								<th>
+									<a href="#" ng-click="orderByField4='num'; reverseSort2 = !reverseSort2">
+        							Number <span ng-show="orderByField4 == 'num'"><span ng-show="!reverseSort2">^</span><span ng-show="reverseSort2">v</span></span>
+          							</a>
+								</th>
+								<th>Challenge</th>
+								<th>
+									<a href="#" ng-click="orderByField4='challenge'; reverseSort2 = !reverseSort2">
+        							Status <span ng-show="orderByField4 == 'challenge'"><span ng-show="!reverseSort2">^</span><span ng-show="reverseSort2">v</span></span>
+          							</a>
+								</th>
+							</tr>
+							<tr ng-repeat="x in challenge|orderBy:orderByField4:reverseSort2" ng-class="{green: x.challenge == 'Complete!!', red: x.challenge != 'Complete!!'}">
+								<td>{{x.num}}</td>
+								<td >{{x.title}}</td>
+								<td >{{x.challenge}}</td>
+							</tr>
+						</table>
+					</div>
+				</div>
+			</div>
+
+			<div class="tab">
+			    <input class="tab-radio" type="radio" id="tab-5" name="tab-group-1">
+			    <label class="tab-label" for="tab-5">Stats</label>
+
+			    <div class="tab-panel" id="table-wrapper">
+					<div class="tab-content">
+						<table class="table">
+							<caption class="odd" style="font-weight:bold;font-size:20px">{{exercise}}</caption>
+							<tr class="even">
+								<th>Gains</th>
+								<td>{{sgains}}</td>	
+							</tr>
+							<tr class="odd">
+								<th>Records</th>
+								<td>{{srecords}}</td>	
+							</tr>
+							<tr class="even">
+								<th>Challenges</th>
+								<td>{{schallenges}}</td>
+							</tr>
+							<tr class="odd">
+								<th>Sets</th>
+								<td>{{ssets}}</td>
+							</tr>
+							<tr class="even">
+								<th>Reps</th>
+								<td>{{sreps}}</td>
+							</tr>
+							<tr class="odd">
+								<th>Pounds</th>
+								<td>{{sweight}}</td>
+							</tr>
+							<tr class="even">
+								<th>1RM</th>
+								<td>{{soneRM}}</td>
+							</tr>
+							<tr>
+								<th colspan="2" class="odd" style="font-weight:bold;font-size:20px">Totals</th>
+							</tr>
+							<tr class="even">
+								<th>Gains</th>
+								<td>{{xgains}}</td>	
+							</tr>
+							<tr class="odd">
+								<th>Records</th>
+								<td>{{xrecords}}</td>	
+							</tr>
+							<tr class="even">
+								<th>Challenges</th>
+								<td>{{xchallenges}}</td>
+							</tr>
+							<tr class="odd">
+								<th>Sets</th>
+								<td>{{xsets}}</td>
+							</tr>
+							<tr class="even">
+								<th>Reps</th>
+								<td>{{xreps}}</td>
+							</tr>
+							<tr class="odd">
+								<th>Pounds</th>
+								<td>{{xweight}}</td>
+							</tr>
+							<tr class="even">
+								<th>1RM</th>
+								<td>{{xoneRM}}</td>
+							</tr>
+						</table>
+						<div class="stuff">
+							<fusioncharts type="pie2d" datasource="{{myDataSource4}}">
+							</fusioncharts>
+							<div >
+								<input type="button" ng-class="{'btn-warning': oneRMPieButton}" ng-click="oneRMPie()" value="1RM">
+								<input type="button" ng-class="{'btn-warning': gainsPieButton}" ng-click="gainsPie()" value="Gains">
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+<script src="variables.js"></script>
+<script src="sets.js"></script>
+<script src="refresh.js"></script>
+<script src="records.js"></script>
+<script src="challenges.js"></script>
+<script src="stats.js"></script>
+<script src="buttons.js"></script>
+<script src="fusioncharts.js"></script>
+<script src="fusioncharts.charts.js"></script>
+<script src="angular-fusioncharts.min.js"></script>
+</body>
+</html>
+
