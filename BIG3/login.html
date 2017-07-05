@@ -1,0 +1,46 @@
+<html>
+	<head>
+		<title>Login</title>
+		<link href="login2.css" type="text/css" rel="stylesheet">
+		<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+	</head>
+<body ng-app="myApp" id="login">
+	<div ng-controller="homepage">
+		<table id="header">
+			<tr>
+				<td colspan="2">
+					<img src="Drive.jpg" style="width: 300px; height: 300px">
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2">
+					<span id="bigboi">TH<span class="dick">3</span> BIG THR<span class="dick">33</span></span>
+				</td>
+			</tr>
+			<tr >
+				<td><input type="button" class="buttons" ng-class="{'btn-change': logButton}" ng-click="changeLog()" value="Login"></td>
+				<td><input type="button" class="buttons" ng-class="{'btn-change': signButton}" ng-click="changeSign()" value="Sign Up"></td>
+			</tr>
+				<td class="dick"> Username: </td>
+				<td><input id="username" type="text"></td>
+			</tr>
+			<tr>
+				<td class="dick"> Password: </td>
+				<td><input id="username" type="text"></td>
+			</tr>
+			<tr ng-show="confirm">
+				<td class="dick"> Confirm Password: </td>
+				<td><input id="username" type="text"></td>
+			</tr>
+			<tr>
+				<td colspan="2">
+					<form action="Angular.html">
+						<input class="go" type="submit" value="GO!">
+					</form>
+				</td>
+			</tr>
+		</table>
+	</div>
+<script src="login3.js"></script>
+</body>
+</html>
