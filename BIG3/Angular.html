@@ -4,43 +4,25 @@
 		<link href="BIG3.css" type="text/css" rel="stylesheet">
 		<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
 	</head>
-<body ng-app="myApp">	
+<body ng-app="myApp" id="jaunt">	
 	<div ng-controller="buttons">
 		<table id="header">
 			<tr>
-				<td rowspan="3">
-					<img src="Drive.jpg" style="width: 150px; height: 150px">
-				</td>
 				<td >
-					<span id="bigboi">TH<span class="sick">3</span> BIG THR<span class="sick">33</span></span>
-				</td>
-				<td>
-					<p>Weight: <input id="weight" type="text" value="100" ng-model="weight"></p>
-					<p>Reps: <input id="reps" type="text" value="10" ng-model="reps"></p>
-					
+					<span id="bigboi">:D R I V </span><span class="three">Ɛ</span>
 				</td>
 			</tr>
 			<tr >	
 				<td >
 					<span >
-					<input class ="butt" type="button" ng-class="{'btn-warning': benchButton}" ng-click="changeBench()" onclick="refreshBench()" value="Bench"> ---
-					<input class ="butt" type="button" ng-class="{'btn-warning': squatButton}" ng-click="changeSquat()" onclick="refreshSquat()" value="Squat"> ---
-					<input class ="butt" type="button" ng-class="{'btn-warning': deadButton}" ng-click="changeDead()" onclick="refreshDead()" value="Deadlift">
+					<input class ="butt" type="button" ng-class="{'btn-warning': benchButton}" ng-click="changeBench()" onclick="refreshBench()" value="BENCH"> ---
+					<input class ="butt" type="button" ng-class="{'btn-warning': squatButton}" ng-click="changeSquat()" onclick="refreshSquat()" value="SQUAT"> ---
+					<input class ="butt" type="button" ng-class="{'btn-warning': deadButton}" ng-click="changeDead()" onclick="refreshDead()" value="DEADLIFT">
 					<span>
-				</td>
-				<td>
-					<input type="button" onclick="addSet();addRecord();addChallenges();addStats();" ng-click="refresh();changeTotals()" value="Add">
-					<span id="response">{{exercise}} {{weight}} x {{reps}}</span>
 				</td>
 			</tr>
 			<tr>
-				<td id="points">Level <span class="sick">{{xlevel}}</span>: <span class="sick">{{xcurrent}}</span> / <span class="sick">{{xtotal}}</span> Gains</td>
-				<td>
-					
-					<span id="response2"></span>
-					<span id="response3"></span>
-					<span id="response4"></span>
-				</td>
+				<td id="points">LEVEL <span class="sick"> {{xlevel}}</span> : <span class="sick">{{xcurrent}}</span> / <span class="sick">{{xtotal}}</span> GAINS</td>
 			</tr>
 		</table>
 
@@ -48,7 +30,138 @@
   			<div id="myBar" ng-style="{width : progress};"></div>
 		</div>
 		
-		<div class="tabs">
+		<div class="tabs" >
+		
+
+			<div class="tab">
+			    <input class="tab-radio" type="radio" id="tab-5" name="tab-group-1">
+			    <label class="tab-label" for="tab-5">Stats</label>
+
+			    <div class="tab-panel" id="table-wrapper">
+					<div class="tab-content">
+						<table class="table">
+							<caption class="odd" style="font-weight:bold;font-size:20px">{{exercise}}</caption>
+							<tr class="even">
+								<th>Gains</th>
+								<td>{{sgains}}</td>	
+							</tr>
+							<tr class="odd">
+								<th>Records</th>
+								<td>{{srecords}}</td>	
+							</tr>
+							<tr class="even">
+								<th>Challenges</th>
+								<td>{{schallenges}}</td>
+							</tr>
+							<tr class="odd">
+								<th>Sets</th>
+								<td>{{ssets}}</td>
+							</tr>
+							<tr class="even">
+								<th>Reps</th>
+								<td>{{sreps}}</td>
+							</tr>
+							<tr class="odd">
+								<th>Pounds</th>
+								<td>{{sweight}}</td>
+							</tr>
+							<tr class="even">
+								<th>1RM</th>
+								<td>{{soneRM}}</td>
+							</tr>
+							<tr>
+								<th colspan="2" class="odd" style="font-weight:bold;font-size:20px">Totals</th>
+							</tr>
+							<tr class="even">
+								<th>Gains</th>
+								<td>{{xgains}}</td>	
+							</tr>
+							<tr class="odd">
+								<th>Records</th>
+								<td>{{xrecords}}</td>	
+							</tr>
+							<tr class="even">
+								<th>Challenges</th>
+								<td>{{xchallenges}}</td>
+							</tr>
+							<tr class="odd">
+								<th>Sets</th>
+								<td>{{xsets}}</td>
+							</tr>
+							<tr class="even">
+								<th>Reps</th>
+								<td>{{xreps}}</td>
+							</tr>
+							<tr class="odd">
+								<th>Pounds</th>
+								<td>{{xweight}}</td>
+							</tr>
+							<tr class="even">
+								<th>1RM</th>
+								<td>{{xoneRM}}</td>
+							</tr>
+						</table>
+						<div class="stuff">
+							<fusioncharts type="pie2d" datasource="{{myDataSource4}}">
+							</fusioncharts>
+							<div >
+								<input type="button" ng-class="{'btn-warning': oneRMPieButton}" ng-click="oneRMPie()" value="1RM">
+								<input type="button" ng-class="{'btn-warning': gainsPieButton}" ng-click="gainsPie()" value="Gains">
+							</div>
+							<div>
+								<img src="Drive.jpg" style="width: 150px; height: 150px">
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="tab">
+			    <input class="tab-radio" type="radio" id="tab-6" name="tab-group-1">
+			    <label class="tab-label" for="tab-6">Set</label>
+
+			    <div class="tab-panel" id="table-wrapper">
+					<div class="tab-content">
+						<table>
+							<tr>
+								<td>					
+									<span id="response2"></span>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<span id="response3"></span>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<span id="response4"></span>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<span id="response">{{exercise}} {{weight}} x {{reps}}</span>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<p>Weight: <input id="weight" type="text" value="100" ng-model="weight"></p>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<p>Reps: <input id="reps" type="text" value="10" ng-model="reps"></p>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<input type="button" onclick="addSet();addRecord();addChallenges();addStats();" ng-click="refresh();changeTotals()" value="Add">			
+								</td>
+							</tr>
+						</table>
+					</div>
+				</div>
+			</div>
 
 			<div class="tab">
 			    <input class="tab-radio" type="radio" id="tab-1" name="tab-group-1" checked>
@@ -57,10 +170,10 @@
 			    <div class="tab-panel" >
 					<div class="tab-content" >
 					<span class="label">Ordered By: {{orderByField}}, Reverse Sort: {{reverseSort}}</span><br>
-						<div class="scrollingtable">
+						<div class="scrollingtable" >
 							<div>
 								<div>
-									<table class="table">
+									<table class="table" id="tchi">
 										<thead>
 											<tr class="odd">
 												<th>
@@ -152,7 +265,7 @@
 							</tr>
 						</table>
 						<div class="stuff">
-							<fusioncharts type="column2d" datasource="{{myDataSource}}">
+							<fusioncharts style="width:300px" type="column2d" datasource="{{myDataSource}}">
 							</fusioncharts>
 							<div>
 								<input type="button" ng-class="{'btn-warning': weightButton}" ng-click="weightStacks()" value="Weight">
@@ -245,85 +358,7 @@
 				</div>
 			</div>
 
-			<div class="tab">
-			    <input class="tab-radio" type="radio" id="tab-5" name="tab-group-1">
-			    <label class="tab-label" for="tab-5">Stats</label>
-
-			    <div class="tab-panel" id="table-wrapper">
-					<div class="tab-content">
-						<table class="table">
-							<caption class="odd" style="font-weight:bold;font-size:20px">{{exercise}}</caption>
-							<tr class="even">
-								<th>Gains</th>
-								<td>{{sgains}}</td>	
-							</tr>
-							<tr class="odd">
-								<th>Records</th>
-								<td>{{srecords}}</td>	
-							</tr>
-							<tr class="even">
-								<th>Challenges</th>
-								<td>{{schallenges}}</td>
-							</tr>
-							<tr class="odd">
-								<th>Sets</th>
-								<td>{{ssets}}</td>
-							</tr>
-							<tr class="even">
-								<th>Reps</th>
-								<td>{{sreps}}</td>
-							</tr>
-							<tr class="odd">
-								<th>Pounds</th>
-								<td>{{sweight}}</td>
-							</tr>
-							<tr class="even">
-								<th>1RM</th>
-								<td>{{soneRM}}</td>
-							</tr>
-							<tr>
-								<th colspan="2" class="odd" style="font-weight:bold;font-size:20px">Totals</th>
-							</tr>
-							<tr class="even">
-								<th>Gains</th>
-								<td>{{xgains}}</td>	
-							</tr>
-							<tr class="odd">
-								<th>Records</th>
-								<td>{{xrecords}}</td>	
-							</tr>
-							<tr class="even">
-								<th>Challenges</th>
-								<td>{{xchallenges}}</td>
-							</tr>
-							<tr class="odd">
-								<th>Sets</th>
-								<td>{{xsets}}</td>
-							</tr>
-							<tr class="even">
-								<th>Reps</th>
-								<td>{{xreps}}</td>
-							</tr>
-							<tr class="odd">
-								<th>Pounds</th>
-								<td>{{xweight}}</td>
-							</tr>
-							<tr class="even">
-								<th>1RM</th>
-								<td>{{xoneRM}}</td>
-							</tr>
-						</table>
-						<div class="stuff">
-							<fusioncharts type="pie2d" datasource="{{myDataSource4}}">
-							</fusioncharts>
-							<div >
-								<input type="button" ng-class="{'btn-warning': oneRMPieButton}" ng-click="oneRMPie()" value="1RM">
-								<input type="button" ng-class="{'btn-warning': gainsPieButton}" ng-click="gainsPie()" value="Gains">
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
+			
 		</div>
 	</div>
 <script src="variables.js"></script>

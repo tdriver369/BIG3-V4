@@ -310,20 +310,36 @@ app.controller('buttons', function($scope) {
 	}
 	$scope.history = function(){
 		var arr = [];
+		var cut = 0
 		if (exercise == "Bench"){
-			arr = benchHist.slice(-10)
-			for (i=0; i < 10; i++){
+			
+			if (benchHist > 9){
+				for (i=0; i < 10; i++){
 				$scope.myDataSource3.data[i].label = arr[i].weight.toString() + "x" + arr[i].reps.toString();
 			    $scope.myDataSource3.data[i].value = arr[i].oneRM;
+				}
+			} else {
+				cut = benchHist.length;
 			}
+			
 		} else if (exercise == "Squat"){
-			arr = squatHist.slice(-10)
+			if (benchHist > 9){
+				arr = benchHist.slice(-10);
+			} else {
+				cut = benchHist.length
+				arr = benchHist.slice(-cut);
+			}
 			for (i=0; i < 10; i++){
 				$scope.myDataSource3.data[i].label = arr[i].weight.toString() + "x" + arr[i].reps.toString();
 			    $scope.myDataSource3.data[i].value = arr[i].oneRM;
 			}
 		} else if (exercise == "Deadlift"){
-			arr = deadHist.slice(-10)
+			if (benchHist > 9){
+				arr = benchHist.slice(-10);
+			} else {
+				cut = benchHist.length
+				arr = benchHist.slice(-cut);
+			}
 			for (i=0; i < 10; i++){
 				$scope.myDataSource3.data[i].label = arr[i].weight.toString() + "x" + arr[i].reps.toString();
 			    $scope.myDataSource3.data[i].value = arr[i].oneRM;
