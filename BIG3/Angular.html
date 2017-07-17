@@ -7,11 +7,7 @@
 <body ng-app="myApp" id="jaunt">	
 	<div ng-controller="buttons">
 		<table id="header">
-			<tr>
-				<td >
-					<span id="bigboi">:D R I V </span><span class="three">Ɛ</span>
-				</td>
-			</tr>
+			
 			<tr >	
 				<td >
 					<span >
@@ -219,13 +215,14 @@
 										</tbody>
 									</table>
 								</div>
-							</div>
+							</div>					
 						</div>
-							<fusioncharts class="bro" type="column2d" datasource="{{myDataSource3}}">
-							</fusioncharts>						
+						<br>
+						<div id="work"></div>					
 					</div>
 				</div>
 			</div>
+
 
 			<div class="tab">
 			    <input class="tab-radio" type="radio" id="tab-2" name="tab-group-1">
@@ -265,7 +262,7 @@
 							</tr>
 						</table>
 						<div class="stuff">
-							<fusioncharts style="width:300px" type="column2d" datasource="{{myDataSource}}">
+							<fusioncharts style="width:600px" type="column2d" datasource="{{myDataSource}}">
 							</fusioncharts>
 							<div>
 								<input type="button" ng-class="{'btn-warning': weightButton}" ng-click="weightStacks()" value="Weight">
@@ -360,7 +357,9 @@
 
 			
 		</div>
+
 	</div>
+
 <script src="variables.js"></script>
 <script src="sets.js"></script>
 <script src="refresh.js"></script>
@@ -371,6 +370,9 @@
 <script src="fusioncharts.js"></script>
 <script src="fusioncharts.charts.js"></script>
 <script src="angular-fusioncharts.min.js"></script>
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/highcharts-more.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
 </body>
 </html>
 

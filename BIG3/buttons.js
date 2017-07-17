@@ -46,22 +46,29 @@ app.controller('buttons', function($scope) {
 
 	$scope.myDataSource3 = {
 	    chart: {
-	        caption: "Last 10 Sets",
-	        subCaption: "As 1RM",
-	    },
+	    	type: "column"
 
-	    data: [
-	    	{label: "Reps", value: 100},
-	    	{label: "Reps", value: 100},
-	    	{label: "Reps", value: 100},
-	    	{label: "Reps", value: 100},
-	    	{label: "Reps", value: 100},
-	    	{label: "Reps", value: 100},
-	    	{label: "Reps", value: 100},
-	    	{label: "Reps", value: 100},
-	    	{label: "Reps", value: 100},
-	    	{label: "Reps", value: 100}
-	    ],
+	    },
+	    title: {
+	    	text: "Last 10 Sets",
+	    		style: {
+		    		color: 'red',
+		    		fontSize: '60px'
+	    		}
+
+	    },
+	    tooltip: {
+	    	headerFormat: '<span style="font-size:20px"></span>'
+	    },
+	    yAxis: {
+	        title: {
+	            text: 'Weight'
+	        }
+    	},
+	    series: [{
+  	    	name: '1 Rep Max',
+	        data: [49.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4]
+	    }]
 	};
 
 	$scope.myDataSource4 = {
@@ -311,6 +318,7 @@ app.controller('buttons', function($scope) {
 	$scope.history = function(){
 		var arr = [];
 		var cut = 0
+		/*
 		if (exercise == "Bench"){
 			
 			if (benchHist > 9){
@@ -344,7 +352,7 @@ app.controller('buttons', function($scope) {
 				$scope.myDataSource3.data[i].label = arr[i].weight.toString() + "x" + arr[i].reps.toString();
 			    $scope.myDataSource3.data[i].value = arr[i].oneRM;
 			}
-		}
+		}*/
 			
 	}
 	$scope.oneRMPie = function(){
@@ -370,4 +378,5 @@ app.controller('buttons', function($scope) {
 	$scope.changeTotals();
 	$scope.weightStacks();
 	$scope.weightPumps();
+	Highcharts.chart('work', $scope.myDataSource3);
 });
