@@ -8,21 +8,19 @@ app.controller('buttons', function($scope) {
 
 	$scope.myDataSource = {
 	    chart: {
-	        caption: "Stacks",
-	        subCaption: "Weight Records",
+	    	type: "column"
 	    },
-	    data: [
-	    	{label: "Reps", value: 100},
-	    	{label: "Reps", value: 100},
-	    	{label: "Reps", value: 100},
-	    	{label: "Reps", value: 100},
-	    	{label: "Reps", value: 100},
-	    	{label: "Reps", value: 100},
-	    	{label: "Reps", value: 100},
-	    	{label: "Reps", value: 100},
-	    	{label: "Reps", value: 100},
-	    	{label: "Reps", value: 100}
-	    ],
+	    title: {
+	        text: "Stacks"
+	    },
+	    subtitle: {
+	        text: "Weight Records"
+	    },
+		series: [{
+  	    	name: '1 Rep Max',
+	        data: [59.9, 61.5, 96.4, 129.2, 124.0, 186.0, 115.6, 148.5, 276.4, 184.1, 105.6, 54.4],
+	        color: 'red'
+	    }]
 	};
 
 	$scope.myDataSource2 = {
@@ -52,22 +50,39 @@ app.controller('buttons', function($scope) {
 	    title: {
 	    	text: "Last 10 Sets",
 	    		style: {
-		    		color: 'red',
 		    		fontSize: '60px'
 	    		}
-
-	    },
-	    tooltip: {
-	    	headerFormat: '<span style="font-size:20px"></span>'
 	    },
 	    yAxis: {
 	        title: {
-	            text: 'Weight'
+	            text: 'Weight',
+	            	style: {
+	            		fontSize: '45px'
+	            	}
+	        },
+	        labels: {
+	        	style: {
+	        		fontSize: '30px'
+	        	}
 	        }
+    	},
+    	xAxis: {
+    		categories: [1,2,3,4,5,6,7,8,9,10,20,30],
+    		labels: {
+	        	style: {
+	        		fontSize: '30px'
+	        	}
+	        }
+    	},
+    	legend: {
+    		itemStyle: {
+    			fontSize: '20px'
+    		}
     	},
 	    series: [{
   	    	name: '1 Rep Max',
-	        data: [49.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4]
+	        data: [49.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4],
+	        color: 'red'
 	    }]
 	};
 
@@ -193,6 +208,7 @@ app.controller('buttons', function($scope) {
 		$scope.weightButton = true;
 		$scope.oneRMButton = false;
 		$scope.recordsButton = false;
+		/*
 		if (exercise == "Bench"){
 			for (i = 0, j=9; i<stacksBench.length; i++, j--){
 		    	$scope.myDataSource.data[j].label = stacksBench[i].reps.toString();
@@ -209,6 +225,7 @@ app.controller('buttons', function($scope) {
 		    	$scope.myDataSource.data[j].value = stacksDead[i].weight;
 	    	}
 	    }
+	    */
 	}
 	$scope.weightPumps = function(){
 		$scope.weightButton = true;
@@ -235,6 +252,7 @@ app.controller('buttons', function($scope) {
 		$scope.weightButton = false;
 		$scope.oneRMButton = true;
 		$scope.recordsButton = false;
+		/*
 		if (exercise == "Bench"){
 			for (i = 0, j=9; i<stacksBench.length; i++, j--){
 		    	$scope.myDataSource.data[j].label = stacksBench[i].reps.toString();
@@ -251,6 +269,7 @@ app.controller('buttons', function($scope) {
 		    	$scope.myDataSource.data[j].value = stacksDead[i].oneRM;
 	    	}
 	    }
+	    */
 	}
 	$scope.oneRMPumps = function(){
 		$scope.weightButton = false;
@@ -277,6 +296,7 @@ app.controller('buttons', function($scope) {
 		$scope.weightButton = false;
 		$scope.oneRMButton = false;
 		$scope.recordsButton = true;
+		/*
 		if (exercise == "Bench"){
 			for (i = 0, j=9; i<stacksBench.length; i++, j--){
 		    	$scope.myDataSource.data[j].label = stacksBench[i].reps.toString();
@@ -293,6 +313,7 @@ app.controller('buttons', function($scope) {
 		    	$scope.myDataSource.data[j].value = stacksDead[i].records;
 	    	}
 	    }
+	    */
 	}
 	$scope.recordsPumps = function(){
 		$scope.weightButton = false;
@@ -379,4 +400,5 @@ app.controller('buttons', function($scope) {
 	$scope.weightStacks();
 	$scope.weightPumps();
 	Highcharts.chart('work', $scope.myDataSource3);
+	Highcharts.chart('stackwork', $scope.myDataSource);
 });

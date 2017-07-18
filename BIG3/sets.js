@@ -8,6 +8,7 @@ function addSet() {
 	var b = parseInt(z);
 	var q = b - 1;
 	var o = 0;
+	document.getElementById("response").innerHTML = "";
 
 	if(a && b){
 		
