@@ -75,16 +75,22 @@
 .tabs .tab [type="radio"]:checked ~ .tab-panel {
   display: inline;
 }
-.table {
+.cable {
 	float: left;
   width: 100%;
   font-size: 50px;
+  margin-bottom: 20px;
+  text-align: center;
+  border-collapse: collapse;
 }
-.table, td, th {
-	border-collapse: collapse;
+.cable, td, th {
+	
   padding: 5px;
 }
 
+.cable th {
+  color: white;
+}
 
 .green {
 	background-color: LightGreen;
@@ -122,9 +128,9 @@
 
 #myBar {
 	width: 20%;
-  	height: 70px;
-  	background-color: Crimson;
-  	border: 1px solid black;
+	height: 70px;
+	background-color: Crimson;
+	border: 1px solid black;
 }
 
 #table-wrapper {
@@ -260,5 +266,34 @@
   font-size: 30px;
   margin-top: 20px;
   margin-right: 0;
+}
+
+.butt2 {
+  width: 20%;
+  height: 3%;
+  font-size: 30px;
+}
+
+.stats {
+  color: white;
+  font-size: 80px;
+  width: 100%;
+  text-align: left;
+  margin-top: 40px;
+  border-collapse: separate;
+  border-spacing: 15px 0;
+}
+
+.history {
+  color: white;
+  font-size: 50px;
+  width: 100%;
+  text-align: center;
+  border-collapse: separate;
+  border-spacing: 50px 0;
+}
+
+.history a {
+  color: white;
 }
 

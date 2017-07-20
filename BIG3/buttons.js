@@ -8,80 +8,207 @@ app.controller('buttons', function($scope) {
 
 	$scope.myDataSource = {
 	    chart: {
-	    	type: "column"
+	    	type: "column",
+	    	width: '925',
+	    	height: '400',
+	    	spacingTop: 20,
+	    	backgroundColor:'black',
+	    	marginLeft: 120
 	    },
 	    title: {
-	        text: "Stacks"
+	        text: "Stacks: Weight Record",
+	        	style: {
+	        		fontSize: '40px',
+		    		color: 'white'
+	        	}
 	    },
-	    subtitle: {
-	        text: "Weight Records"
-	    },
+	    yAxis: {
+	        title: {
+	            text: 'Weight',
+	            	style: {
+	            		fontSize: '40px',
+	            		color: 'white'
+	            	}
+	        },
+	        labels: {
+	        	style: {
+	        		fontSize: '30px',
+	        		color: 'white'
+	        	}
+	        },
+	        maxPadding: 0
+    	},
+    	xAxis: {
+    		categories: [1,2,3,4,5],
+    		labels: {
+	        	style: {
+	        		fontSize: '30px',
+	        		color: 'white'
+	        	}
+	        }
+    	},
+    	tooltip: {
+		    //backgroundColor: '#FCFFC5',
+		    //borderColor: 'black',
+		    //borderRadius: 30,
+		    borderWidth: 5,
+		    style: {
+		    	fontSize: '40px'
+		    }
+		},
+    	plotOptions: {
+            series: {
+                pointPadding: 0,
+                groupPadding: 0.1,
+            }
+        },
+    	legend: {
+    		itemStyle: {
+    			fontSize: '30px',
+    			color: 'white'
+    		}
+    	},
 		series: [{
   	    	name: '1 Rep Max',
-	        data: [59.9, 61.5, 96.4, 129.2, 124.0, 186.0, 115.6, 148.5, 276.4, 184.1, 105.6, 54.4],
+	        data: [59.9, 61.5, 96.4, 129.2, 124.0, 186.0, 115.6, 148.5, 276.4, 184.1, 105.6],
 	        color: 'red'
 	    }]
 	};
 
 	$scope.myDataSource2 = {
 	    chart: {
-	        caption: "Pumps",
-	        subCaption: "Reps Records",
+	    	type: "column",
+	    	width: '925',
+	    	height: '400',
+	    	spacingTop: 20,
+	    	backgroundColor:'black',
+	    	marginLeft: 120
 	    },
-	    data: [
-	    	{label: "Reps", value: 100},
-	    	{label: "Reps", value: 100},
-	    	{label: "Reps", value: 100},
-	    	{label: "Reps", value: 100},
-	    	{label: "Reps", value: 100},
-	    	{label: "Reps", value: 100},
-	    	{label: "Reps", value: 100},
-	    	{label: "Reps", value: 100},
-	    	{label: "Reps", value: 100},
-	    	{label: "Reps", value: 100}
-	    ],
+	    title: {
+	        text: "Pumps: Rep Records",
+	        	style: {
+	        		fontSize: '40px',
+		    		color: 'white'
+	        	}
+	    },
+	    yAxis: {
+	        title: {
+	            text: 'Weight',
+	            	style: {
+	            		fontSize: '40px',
+	            		color: 'white'
+	            	}
+	        },
+	        labels: {
+	        	style: {
+	        		fontSize: '30px',
+	        		color: 'white'
+	        	}
+	        },
+	        maxPadding: 0
+    	},
+    	xAxis: {
+    		categories: [1,2,3,4,5],
+    		labels: {
+	        	style: {
+	        		fontSize: '30px',
+	        		color: 'white'
+	        	}
+	        }
+    	},
+    	tooltip: {
+		    //backgroundColor: '#FCFFC5',
+		    //borderColor: 'black',
+		    //borderRadius: 30,
+		    borderWidth: 5,
+		    style: {
+		    	fontSize: '40px'
+		    }
+		},
+    	plotOptions: {
+            series: {
+                pointPadding: 0,
+                groupPadding: 0.1,
+            }
+        },
+    	legend: {
+    		itemStyle: {
+    			fontSize: '30px',
+    			color: 'white'
+    		}
+    	},
+		series: [{
+  	    	name: '1 Rep Max',
+	        data: [59.9, 61.5, 96.4, 129.2, 124.0, 186.0, 115.6, 148.5, 276.4, 184.1, 105.6],
+	        color: 'red'
+	    }]
 	};
 
 	$scope.myDataSource3 = {
 	    chart: {
-	    	type: "column"
+	    	type: "column",
+	    	width: '925',
+	    	height: '500',
+	    	backgroundColor:'black',
+	    	marginLeft: 120
 
 	    },
 	    title: {
-	    	text: "Last 10 Sets",
+	    	text: "Last 5 Sets",
 	    		style: {
-		    		fontSize: '60px'
+		    		fontSize: '60px',
+		    		color: 'white'
 	    		}
 	    },
 	    yAxis: {
 	        title: {
 	            text: 'Weight',
 	            	style: {
-	            		fontSize: '45px'
+	            		fontSize: '40px',
+	            		color: 'white'
 	            	}
 	        },
 	        labels: {
 	        	style: {
-	        		fontSize: '30px'
+	        		fontSize: '30px',
+	        		color: 'white'
 	        	}
-	        }
+	        },
+	        maxPadding: 0
     	},
     	xAxis: {
-    		categories: [1,2,3,4,5,6,7,8,9,10,20,30],
+    		categories: [1,2,3,4,5],
     		labels: {
 	        	style: {
-	        		fontSize: '30px'
+	        		fontSize: '30px',
+	        		color: 'white'
 	        	}
 	        }
     	},
+    	tooltip: {
+		    //backgroundColor: '#FCFFC5',
+		    //borderColor: 'black',
+		    //borderRadius: 30,
+		    borderWidth: 5,
+		    style: {
+		    	fontSize: '40px'
+		    }
+		},
+    	plotOptions: {
+            series: {
+                pointPadding: 0,
+                groupPadding: 0.1,
+            }
+        },
     	legend: {
     		itemStyle: {
-    			fontSize: '20px'
+    			fontSize: '30px',
+    			color: 'white'
     		}
     	},
 	    series: [{
   	    	name: '1 Rep Max',
-	        data: [49.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4],
+	        data: [49.9, 71.5, 106.4, 129.2, 144.0],
 	        color: 'red'
 	    }]
 	};
@@ -231,6 +358,7 @@ app.controller('buttons', function($scope) {
 		$scope.weightButton = true;
 		$scope.oneRMButton = false;
 		$scope.recordsButton = false;
+		/*
 		if (exercise == "Bench"){
 			for (i = 0, j=9; i<pumpsBench.length; i++, j--){
 		    	$scope.myDataSource2.data[j].label = pumpsBench[i].weight.toString();
@@ -247,6 +375,7 @@ app.controller('buttons', function($scope) {
 		    	$scope.myDataSource2.data[j].value = pumpsDead[i].reps;
 		    }
 	    }
+	    */
 	}
 	$scope.oneRMStacks = function(){
 		$scope.weightButton = false;
@@ -275,6 +404,7 @@ app.controller('buttons', function($scope) {
 		$scope.weightButton = false;
 		$scope.oneRMButton = true;
 		$scope.recordsButton = false;
+		/*
 		if (exercise == "Bench"){
 			for (i = 0, j=9; i<pumpsBench.length; i++, j--){
 		    	$scope.myDataSource2.data[j].label = pumpsBench[i].weight.toString();
@@ -291,6 +421,7 @@ app.controller('buttons', function($scope) {
 		    	$scope.myDataSource2.data[j].value = pumpsDead[i].oneRM;
 		    }
 	    }
+	    */
 	}
 	$scope.recordsStacks = function(){
 		$scope.weightButton = false;
@@ -319,6 +450,7 @@ app.controller('buttons', function($scope) {
 		$scope.weightButton = false;
 		$scope.oneRMButton = false;
 		$scope.recordsButton = true;
+		/*
 		if (exercise == "Bench"){
 			for (i = 0, j=9; i<pumpsBench.length; i++, j--){
 		    	$scope.myDataSource2.data[j].label = pumpsBench[i].weight.toString();
@@ -335,6 +467,7 @@ app.controller('buttons', function($scope) {
 		    	$scope.myDataSource2.data[j].value = pumpsDead[i].records;
 		    }
 	    }
+	    */
 	}
 	$scope.history = function(){
 		var arr = [];
@@ -401,4 +534,5 @@ app.controller('buttons', function($scope) {
 	$scope.weightPumps();
 	Highcharts.chart('work', $scope.myDataSource3);
 	Highcharts.chart('stackwork', $scope.myDataSource);
+	Highcharts.chart('pumpwork', $scope.myDataSource2);
 });
