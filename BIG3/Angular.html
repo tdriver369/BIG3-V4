@@ -8,7 +8,7 @@
 	<div ng-controller="buttons">
 		<table id="header">
 			<tr>
-				<th><div id="drive">:D R I V E :D E M O</div></th>
+				<th><div id="drive">:D R I V E</div></th>
 			</tr>
 			<tr >	
 				<td >
@@ -125,7 +125,7 @@
 							</tr>
 							<tr>
 								<td>
-									<input type="button" class="butt" onclick="addSet();addRecord();addChallenges();addStats();" ng-click="refresh();changeTotals()" value="Add">			
+									<input type="button" class="butt" onclick="addSet();" ng-click="refresh();changeTotals()" value="Add">			
 								</td>
 							</tr>
 						</table>
@@ -147,11 +147,6 @@
 										<thead>
 											<tr>
 												<th>
-													<a href="#" ng-click="orderByField='set'; reverseSort = !reverseSort">
-				        							Set <span ng-show="orderByField == 'set'"><span ng-show="!reverseSort">^</span><span ng-show="reverseSort">v</span></span>
-				          							</a>
-												</th>
-												<th>
 													<a href="#" ng-click="orderByField='date'; reverseSort = !reverseSort">
 				        							Date <span ng-show="orderByField == 'date'"><span ng-show="!reverseSort">^</span><span ng-show="reverseSort">v</span></span>
 				          							</a>
@@ -171,20 +166,19 @@
 				        							1RM <span ng-show="orderByField == 'oneRM'"><span ng-show="!reverseSort">^</span><span ng-show="reverseSort">v</span></span>
 				          							</a>
 												</th>
+												<th>
+												</th>
 											</tr>
 										</thead>
 										<tbody>
 											<tr ng-repeat="x in hist|orderBy:orderByField:reverseSort track by $index">
-												<td >{{x.set}}</td>
-												
-												<td >{{x.date}}</td>
-												
-												<td >{{x.weight}}</td>
-												
-												<td >{{x.reps}}</td>
-												
-												<td >{{x.oneRM}}</td>
-												
+												<td>{{x.date}}</td>
+												<td>{{x.weight}}</td>
+												<td>{{x.reps}}</td>
+												<td>{{x.oneRM}}</td>
+												<td>
+													<input type="button" value="X" class="remove" ng-click="removeRow(x.set)"/>
+												</td>
 											</tr>
 										</tbody>
 									</table>
@@ -246,7 +240,7 @@
 								<th>1RM</th>
 								<th>Records</th>
 							</tr>
-							<tr ng-repeat="x in pump|orderBy:orderByField3:reverseSort2" ng-class="{red: x.records == 0, green: x.records > 1, silver: x.records == 4, gold: x.records > 4}">
+							<tr ng-repeat="x in pump|orderBy:orderByField3:reverseSort2" ng-class="{red: x.records == 0, green: x.records > 0, silver: x.records == 4, gold: x.records > 4}">
 								<td style="font-weight:bold">{{x.weight}}</td>
 								<td >{{x.reps}}</td>
 								<td >{{x.oneRM}}</td>
@@ -274,7 +268,7 @@
 								<th>Challenge</th>
 								<th>Status</th>
 							</tr>
-							<tr ng-repeat="x in challenge|orderBy:orderByField4:reverseSort2" ng-class="{green: x.challenge == 'Complete!!', red: x.challenge != 'Complete!!'}">
+							<tr ng-repeat="x in challenge|orderBy:orderByField4:reverseSort2 track by $index" ng-class="{green: x.challenge == 'Complete!!', red: x.challenge != 'Complete!!'}">
 								<td>{{x.num}}</td>
 								<td >{{x.title}}</td>
 								<td >{{x.challenge}}</td>

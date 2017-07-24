@@ -1,14 +1,14 @@
 var exercise = "Bench";
-var benchHist = JSON.parse(localStorage.getItem("bbb")) || [
-	{set: 0, date: "0-0", weight: 0, reps: 0, oneRM: 0}];
-var squatHist = JSON.parse(localStorage.getItem("sss")) || [
-	{set: 0, date: "0-0", weight: 0, reps: 0, oneRM: 0}];
-var deadHist = JSON.parse(localStorage.getItem("ddd"))  || [
-	{set: 0, date: "0-0", weight: 0, reps: 0, oneRM: 0}];
+var benchHist = JSON.parse(localStorage.getItem("bbbb")) || [
+	{set: 0, date: "0-0", weight: 0, reps: 0, oneRM: 0, challenge: 0, gains: 0}];
+var squatHist = JSON.parse(localStorage.getItem("ssss")) || [
+	{set: 0, date: "0-0", weight: 0, reps: 0, oneRM: 0, challenge: 0, gains: 0}];
+var deadHist = JSON.parse(localStorage.getItem("dddd"))  || [
+	{set: 0, date: "0-0", weight: 0, reps: 0, oneRM: 0, challenge: 0, gains: 0}];
 
 var app = angular.module('myApp', ["ng-fusioncharts"]);
 
-var stacksBench = JSON.parse(localStorage.getItem("bbbStack")) || [
+var stacksBench = [
 	{reps: 1, weight: 0, oneRM: 0, records: 0},
 	{reps: 2, weight: 0, oneRM: 0, records: 0},
 	{reps: 3, weight: 0, oneRM: 0, records: 0},
@@ -20,7 +20,7 @@ var stacksBench = JSON.parse(localStorage.getItem("bbbStack")) || [
 	{reps: 9, weight: 0, oneRM: 0, records: 0},
 	{reps: 10, weight: 0, oneRM: 0, records: 0}];
 
-var pumpsBench = JSON.parse(localStorage.getItem("bbbPump")) || [
+var pumpsBench = [
 	{weight: 45, reps: 0, oneRM: 0, records: 0},
 	{weight: 95, reps: 0, oneRM: 0, records: 0},
 	{weight: 135, reps: 0, oneRM: 0, records: 0},
@@ -32,7 +32,7 @@ var pumpsBench = JSON.parse(localStorage.getItem("bbbPump")) || [
 	{weight: 405, reps: 0, oneRM: 0, records: 0},
 	{weight: 455, reps: 0, oneRM: 0, records: 0}];
 
-var stacksDead = JSON.parse(localStorage.getItem("dddStack")) || [
+var stacksDead = [
 	{reps: 1, weight: 0, oneRM: 0, records: 0},
 	{reps: 2, weight: 0, oneRM: 0, records: 0},
 	{reps: 3, weight: 0, oneRM: 0, records: 0},
@@ -44,7 +44,7 @@ var stacksDead = JSON.parse(localStorage.getItem("dddStack")) || [
 	{reps: 9, weight: 0, oneRM: 0, records: 0},
 	{reps: 10, weight: 0, oneRM: 0, records: 0}];
 
-var pumpsDead = JSON.parse(localStorage.getItem("dddPump")) || [
+var pumpsDead = [
 	{weight: 45, reps: 0, oneRM: 0, records: 0},
 	{weight: 95, reps: 0, oneRM: 0, records: 0},
 	{weight: 135, reps: 0, oneRM: 0, records: 0},
@@ -56,7 +56,7 @@ var pumpsDead = JSON.parse(localStorage.getItem("dddPump")) || [
 	{weight: 405, reps: 0, oneRM: 0, records: 0},
 	{weight: 455, reps: 0, oneRM: 0, records: 0}];
 
-var stacksSquat = JSON.parse(localStorage.getItem("sssStack")) || [
+var stacksSquat = [
 	{reps: 1, weight: 0, oneRM: 0, records: 0},
 	{reps: 2, weight: 0, oneRM: 0, records: 0},
 	{reps: 3, weight: 0, oneRM: 0, records: 0},
@@ -68,7 +68,7 @@ var stacksSquat = JSON.parse(localStorage.getItem("sssStack")) || [
 	{reps: 9, weight: 0, oneRM: 0, records: 0},
 	{reps: 10, weight: 0, oneRM: 0, records: 0}];
 
-var pumpsSquat = JSON.parse(localStorage.getItem("sssPump")) || [
+var pumpsSquat = [
 	{weight: 45, reps: 0, oneRM: 0, records: 0},
 	{weight: 95, reps: 0, oneRM: 0, records: 0},
 	{weight: 135, reps: 0, oneRM: 0, records: 0},
@@ -80,7 +80,7 @@ var pumpsSquat = JSON.parse(localStorage.getItem("sssPump")) || [
 	{weight: 405, reps: 0, oneRM: 0, records: 0},
 	{weight: 455, reps: 0, oneRM: 0, records: 0}];
 
-var benchChallenges = JSON.parse(localStorage.getItem("bbChallenges")) || [
+var benchChallenges = [
 	{num: 1, title: "2 sets of 20 reps", challenge: "Incomplete"},
 	{num: 2, title: "2 sets of 18 reps", challenge: "Incomplete"},
 	{num: 3, title: "3 sets of 15 reps", challenge: "Incomplete"},
@@ -92,7 +92,7 @@ var benchChallenges = JSON.parse(localStorage.getItem("bbChallenges")) || [
 	{num: 9, title: "6, 8, then 10 reps", challenge: "Incomplete"},
 	{num: 10, title: "10, 8, then 6 reps", challenge: "Incomplete"}];
 
-var squatChallenges = JSON.parse(localStorage.getItem("ssChallenges")) || [
+var squatChallenges = [
 	{num: 1, title: "2 sets of 20 reps", challenge: "Incomplete"},
 	{num: 2, title: "2 sets of 18 reps", challenge: "Incomplete"},
 	{num: 3, title: "3 sets of 15 reps", challenge: "Incomplete"},
@@ -104,7 +104,7 @@ var squatChallenges = JSON.parse(localStorage.getItem("ssChallenges")) || [
 	{num: 9, title: "6, 8, then 10 reps", challenge: "Incomplete"},
 	{num: 10, title: "10, 8, then 6 reps", challenge: "Incomplete"}];
 
-var deadChallenges = JSON.parse(localStorage.getItem("ddChallenges")) || [
+var deadChallenges = [
 	{num: 1, title: "2 sets of 20 reps", challenge: "Incomplete"},
 	{num: 2, title: "2 sets of 18 reps", challenge: "Incomplete"},
 	{num: 3, title: "3 sets of 15 reps", challenge: "Incomplete"},
@@ -116,11 +116,9 @@ var deadChallenges = JSON.parse(localStorage.getItem("ddChallenges")) || [
 	{num: 9, title: "6, 8, then 10 reps", challenge: "Incomplete"},
 	{num: 10, title: "10, 8, then 6 reps", challenge: "Incomplete"}];
 
-var benchArrayReps = JSON.parse(localStorage.getItem("benchArrayReps")) || [];
-var squatArrayReps = JSON.parse(localStorage.getItem("squatArrayReps")) || [];
-var deadArrayReps = JSON.parse(localStorage.getItem("deadArrayReps")) || [];
+var arrayReps = [];
 
-var stats = JSON.parse(localStorage.getItem("nnnStats")) || [
+var stats = [
 	{name: "Total", gains: 0, sets: 0, reps: 0, weight: 0, records: 0, challenges: 0, oneRM: 0},
 	{name: "Bench", gains: 0, sets: 0, reps: 0, weight: 0, records: 0, challenges: 0, oneRM: 0},
 	{name: "Squat", gains: 0, sets: 0, reps: 0, weight: 0, records: 0, challenges: 0, oneRM: 0},
@@ -128,7 +126,7 @@ var stats = JSON.parse(localStorage.getItem("nnnStats")) || [
 
 var thisSetGains = 0;
 
-var levelInfo = JSON.parse(localStorage.getItem("levelInfo")) || [
+var levelInfo = [
 	{name: 1, gains: 10000, total: 10000, current: 0},
 	{name: 2, gains: 20000, total: 30000, current: 0},
 	{name: 3, gains: 20000, total: 50000, current: 0},
@@ -150,10 +148,14 @@ var levelInfo = JSON.parse(localStorage.getItem("levelInfo")) || [
 	{name: 19, gains: 1000000, total: 3000000, current: 0},
 	{name: 20, gains: 2000000, total: 5000000, current: 0},];
 
-var level = JSON.parse(localStorage.getItem("level")) || 0;
+var level = 1;
+var current = 0;
+var progress = 0;
+var total = 0;
 
-var progress = JSON.parse(localStorage.getItem("progress")) || 0;
 
 var squatCoef = [1, 1.0475, 1.13, 1.1575, 1.2, 1.242, 1.284, 1.326, 1.368, 1.41];
 var benchCoef = [1, 1.035, 1.08, 1.115, 1.15, 1.18, 1.22, 1.255, 1.29, 1.325];
 var deadCoef = [1, 1.065, 1.13, 1.147, 1.164, 1.181, 1.198, 1.22, 1.232, 1.24];
+
+var challenge = 0;

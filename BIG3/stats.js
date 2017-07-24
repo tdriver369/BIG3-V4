@@ -7,12 +7,7 @@ function addStats() {
 	var gains = g + thisSetGains;
 
 	if(a && b){
-		document.getElementById("response2").innerHTML = "+ " + gains + " Gains!";
-
-		stats[0].gains += gains;
-		stats[0].weight += a;
-		stats[0].reps += b;
-		stats[0].sets++;
+		document.getElementById("response2").innerHTM 
 
 		if (exercise == "Bench"){
 			stats[1].gains += gains;
@@ -43,7 +38,7 @@ function addStats() {
 		localStorage.setItem("nnnStats", JSON.stringify(stats));
 		localStorage.setItem("level", JSON.stringify(level));
 		localStorage.setItem("levelInfo", JSON.stringify(levelInfo));
-		thisSetGains = 0;
+		 
 	} else {
 		document.getElementById("response2").innerHTML = "No Gains Bro";
 	}

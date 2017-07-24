@@ -23,7 +23,7 @@
   background: #eee; 
   border: 1px solid #ccc; 
   display: inline-block;
-  font-size: 40px;
+  font-size: 52px;
   left: 1px;
   margin-left: -1px;
   padding: 10px; 
@@ -297,3 +297,9 @@
   color: white;
 }
 
+.remove {
+  font-size: 50px;
+  color: white;
+  background-color: red;
+  width: 70px;
+}

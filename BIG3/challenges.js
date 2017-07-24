@@ -1,19 +1,18 @@
-function addChallenges() {
+function addChallenges(b) {
 	//document.getElementById("response4").innerHTML = "Hey";
-
+	var reps = b
 	if (exercise == "Bench"){
-		checkChallenge(benchChallenges);
+		checkChallenge(benchChallenges, reps);
 	}else if (exercise == "Squat"){
-		checkChallenge(squatChallenges);
+		checkChallenge(squatChallenges, reps);
 	}else if (exercise == "Deadlift"){
-		checkChallenge(deadChallenges);
+		checkChallenge(deadChallenges, reps);
 	}
-	
-
 }
 
-function checkChallenge (x) {
+function checkChallenge (x, reps) {
 	var x = x;
+	var reps = reps;
 	var one = {num: 0, val: [20,20]};
 	var two = {num: 1, val: [18, 18]};
 	var three = {num: 2, val: [15, 15, 15]};
@@ -26,76 +25,96 @@ function checkChallenge (x) {
 	var ten = {num: 9, val: [10, 8, 6]};
 
 	if (x[0].challenge == "Incomplete"){
-		challengeCompleted(one);
+		challengeCompleted(one, reps);
 	}
 	if (x[1].challenge == "Incomplete"){
-		challengeCompleted(two);
+		challengeCompleted(two, reps);
 	}
 	if (x[2].challenge == "Incomplete"){
-		challengeCompleted(three);
+		challengeCompleted(three, reps);
 	}
 	if (x[3].challenge == "Incomplete"){
-		challengeCompleted(four);
+		challengeCompleted(four, reps);
 	}
 	if (x[4].challenge == "Incomplete"){
-		challengeCompleted(five);
+		challengeCompleted(five, reps);
 	}
 	if (x[5].challenge == "Incomplete"){
-		challengeCompleted(six);
+		challengeCompleted(six, reps);
 	}
 	if (x[6].challenge == "Incomplete"){
-		challengeCompleted(seven);
+		challengeCompleted(seven, reps);
 	}
 	if (x[7].challenge == "Incomplete"){
-		challengeCompleted(eight);
+		challengeCompleted(eight, reps);
 	}
 	if (x[8].challenge == "Incomplete"){
-		challengeCompleted(nine);
+		challengeCompleted(nine, reps);
 	}
 	if (x[9].challenge == "Incomplete"){
-		challengeCompleted(ten);
+		challengeCompleted(ten, reps);
 	}
 }
 
-function challengeCompleted(chal){
+function challengeCompleted(chal, reps){
 	var chal = chal;
 	var z = chal.num
 	var x = chal.val
 	var y = x.length;
+	var n = z + 1;
+	var reps = reps;
+	
+	var problem = true;
 	
 	if (exercise == "Bench"){
-		var arr = benchArrayReps.slice(-y);
-		if (actuallyCompleted(arr, x)){
-			document.getElementById("response4").innerHTML = "Challenge Completed!";
-			benchChallenges[z].challenge = "Complete!!"
-			thisSetGains = thisSetGains + 5000;
-			stats[0].challenges++;
-			stats[1].challenges++;
-			localStorage.setItem("bbChallenges", JSON.stringify(benchChallenges));
+		for (var i in benchHist){
+			arrayReps.push(benchHist[i].reps);
+			if (benchHist[i].challenge == n){
+				problem = false;
+			}
 		}
-		
-	}else if (exercise == "Squat"){
-		var arr = squatArrayReps.slice(-y);
+		arrayReps.push(reps);
+		var arr = arrayReps.slice(-y);
 		if (actuallyCompleted(arr, x)){
-			document.getElementById("response4").innerHTML = "Challenge Completed!";
-			squatChallenges[z].challenge = "Complete!!"
-			thisSetGains = thisSetGains + 5000;
-			stats[0].challenges++;
-			stats[2].challenges++;
-			localStorage.setItem("ssChallenges", JSON.stringify(squatChallenges));
+			if(problem){
+				document.getElementById("response4").innerHTML = "Challenge Completed!";
+				thisSetGains = thisSetGains + 5000;
+				challenge = n;
+			}
+		}
+	}else if (exercise == "Squat"){
+		for (var i in squatHist){
+			arrayReps.push(squatHist[i].reps);
+			if (squatHist[i].challenge == n){
+				problem = false;
+			}
+		}
+		arrayReps.push(reps);
+		var arr = arrayReps.slice(-y);
+		if (actuallyCompleted(arr, x)){
+			if(problem){
+				document.getElementById("response4").innerHTML = "Challenge Completed!";
+				thisSetGains = thisSetGains + 5000;
+				challenge = n;
+			}
 		}
 	}else if (exercise == "Deadlift"){
-		var arr = deadArrayReps.slice(-y);
+		for (var i in deadHist){
+			arrayReps.push(deadHist[i].reps); 
+			if (deadHist[i].challenge == n){
+				problem = false;
+			}
+		}
+		arrayReps.push(reps);
+		var arr = arrayReps.slice(-y);
 		if (actuallyCompleted(arr, x)){
-			document.getElementById("response4").innerHTML = "Challenge Completed!";
-			deadChallenges[z].challenge = "Complete!!"
-			thisSetGains = thisSetGains + 5000;
-			stats[0].challenges++;
-			stats[3].challenges++;
-			localStorage.setItem("ddChallenges", JSON.stringify(deadChallenges));
+			if(problem){
+				document.getElementById("response4").innerHTML = "Challenge Completed!";
+				thisSetGains = thisSetGains + 5000;
+				challenge = n;
+			}
 		}
 	}
-	localStorage.setItem("nnnStats", JSON.stringify(stats));
 }
 
 function actuallyCompleted(arr, x) {

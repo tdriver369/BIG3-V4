@@ -5,13 +5,19 @@ function addSet() {
 	var y = document.getElementById("weight").value;
 	var z = document.getElementById("reps").value;
 	var a = parseInt(y);
-	var b = parseInt(z);
+	var b = parseInt(z);   
 	var q = b - 1;
 	var o = 0;
-	document.getElementById("response").innerHTML = "";
-
+	document.getElementById("response2").innerHTML = "";
+	document.getElementById("response3").innerHTML = "";
+	document.getElementById("response4").innerHTML = "";
+	var g = a * b;
+	var gains = g + thisSetGains;
+	challenge = 0;
+	addRecord();
+	addChallenges(b);
 	if(a && b){
-		
+		document.getElementById("response2").innerHTML = "+ " + gains + " Gains!";
 		//thisSetGains = thisSetGains + g;
 		if (exercise == "Bench"){
 			var num = benchHist.length;
@@ -21,14 +27,9 @@ function addSet() {
 				o = a / (1.013-(0.0267123 * b));
 			}
 			var oneRM = Math.round(o);
-			set = {set: num, date: date, weight: a, reps: b, oneRM: oneRM};
+			set = {set: num, date: date, weight: a, reps: b, oneRM: oneRM, challenge: challenge, gains: gains};
 			benchHist.push(set);
-			localStorage.setItem("bbb", JSON.stringify(benchHist));
-			benchArrayReps.push(b);
-			localStorage.setItem("benchArrayReps", JSON.stringify(benchArrayReps));
-			if (oneRM > stats[1].oneRM){
-				stats[1].oneRM = oneRM;
-			}
+			localStorage.setItem("bbbb", JSON.stringify(benchHist));
 			refreshBench();
 		} else if (exercise == "Squat"){
 			var num = squatHist.length;
@@ -38,14 +39,9 @@ function addSet() {
 				o = a / (1.013-(0.0267123 * b));
 			}
 			var oneRM = Math.round(o);
-			set = {set: num, date: date, weight: a, reps: b, oneRM: oneRM};
+			set = {set: num, date: date, weight: a, reps: b, oneRM: oneRM, challenge: challenge, gains: gains};
 			squatHist.push(set);
-			localStorage.setItem("sss", JSON.stringify(squatHist));
-			squatArrayReps.push(b);
-			localStorage.setItem("squatArrayReps", JSON.stringify(squatArrayReps));
-			if (oneRM > stats[2].oneRM){
-				stats[2].oneRM = oneRM;
-			}
+			localStorage.setItem("ssss", JSON.stringify(squatHist));
 			refreshSquat();
 		} else if (exercise == "Deadlift"){
 			var num = deadHist.length;
@@ -55,19 +51,17 @@ function addSet() {
 				o = a / (1.013-(0.0267123 * b));
 			}
 			var oneRM = Math.round(o);
-			set = {set: num, date: date, weight: a, reps: b, oneRM: oneRM};
+			set = {set: num, date: date, weight: a, reps: b, oneRM: oneRM, challenge: challenge, gains: gains};
 			deadHist.push(set);
-			localStorage.setItem("ddd", JSON.stringify(deadHist));
-			deadArrayReps.push(b);
-			localStorage.setItem("deadArrayReps", JSON.stringify(deadArrayReps));
-			if (oneRM > stats[3].oneRM){
-				stats[3].oneRM = oneRM;
-			}
+			localStorage.setItem("dddd", JSON.stringify(deadHist));
 			refreshDead();
-		}
-		localStorage.setItem("nnnStats", JSON.stringify(stats));
-		
+		}	
 	} else {
-		document.getElementById("response").innerHTML = "Please enter a number for weight and reps!";
+		document.getElementById("response3").innerHTML = "Please enter a number for weight and reps!";
+		document.getElementById("response2").innerHTML = "No Gains Bro";
 	}
+
+	thisSetGains = 0;
+	challenge = 0;
+	arrayReps = [];
 }
